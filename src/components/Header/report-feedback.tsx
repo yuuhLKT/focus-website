@@ -1,20 +1,13 @@
-import { House, Undo2 } from 'lucide-react'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { Undo2 } from 'lucide-react'
+import { useNavigate } from 'react-router-dom'
 import FocusIcon from '../../assets/focus.svg'
 
 export const HeaderReportFeedback = () => {
     const navigate = useNavigate()
-    const location = useLocation()
 
     const goBack = () => {
         navigate(-1)
     }
-
-    const goToHome = () => {
-        navigate('/')
-    }
-
-    const isFormPage = location.pathname.endsWith('/form')
 
     return (
         <>
@@ -26,13 +19,6 @@ export const HeaderReportFeedback = () => {
                             onClick={goBack}
                             size={32}
                         />
-                        {isFormPage && (
-                            <House
-                                className="cursor-pointer"
-                                onClick={goToHome}
-                                size={32}
-                            />
-                        )}
                     </div>
                     <div className="flex gap-2">
                         <img

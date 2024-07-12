@@ -1,17 +1,17 @@
-import { SendForm } from './report-feedback'
+import { FormDialog } from './form-dialog'
 
-export const FeedbackSendForm = () => {
+export const FeedbackDialogForm = () => {
     return (
         <>
-            <SendForm formType="feedback" />
+            <FormDialog text="Send a feedback." formType="feedback" />
         </>
     )
 }
 
-export const ReportSendForm = () => {
+export const ReportDialogForm = () => {
     return (
         <>
-            <SendForm formType="bug" />
+            <FormDialog text="Report a bug." formType="bug" />
         </>
     )
 }
