@@ -1,12 +1,12 @@
-import { NavigateFormButton } from '@/components/Buttons'
 import { MessageCard } from '@/components/Cards/report-feedback-card'
+import { ReportDialogForm } from '@/components/Form'
 import { ReportHeader } from '@/components/Header'
 
 export const ReportPage = () => {
     return (
         <>
             <ReportHeader />
-            <NavigateFormButton type="report" text="Report a bug" />
+            <ReportDialogForm />
             <div className="mt-28">
                 <MessageCard
                     title="Teste 1 - Report"
