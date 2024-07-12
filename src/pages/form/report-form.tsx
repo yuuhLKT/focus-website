@@ -1,11 +1,11 @@
-import { BackArrow } from '@/components/BackArrow'
+import { ReportSendForm } from '@/components/Form'
+import { ReportHeader } from '@/components/Header'
 
 export const ReportForm = () => {
     return (
         <>
-            <BackArrow />
-            <div>ReportForm</div>
-            <h1>ReportForm</h1>
+            <ReportHeader />
+            <ReportSendForm />
         </>
     )
 }

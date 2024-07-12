@@ -1,12 +1,12 @@
-import { BackArrow } from '@/components/BackArrow'
-import { FormButton } from '@/components/Buttons'
+import { NavigateFormButton } from '@/components/Buttons'
 import { MessageCard } from '@/components/Cards/report-feedback-card'
+import { ReportHeader } from '@/components/Header'
 
 export const ReportPage = () => {
     return (
         <>
-            <BackArrow />
-            <FormButton text="Report a bug" type="report" />
+            <ReportHeader />
+            <NavigateFormButton type="report" text="Report a bug" />
             <div className="mt-28">
                 <MessageCard
                     title="Teste 1 - Report"

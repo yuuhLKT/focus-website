@@ -1,4 +1,3 @@
-// App.tsx
 import { ThemeProvider } from '@/components/theme-provider'
 import { Route, Routes } from 'react-router-dom'
 import { ModeToggle } from './components/mode-toggle'

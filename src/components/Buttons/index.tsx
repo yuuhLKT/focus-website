@@ -1,12 +1,12 @@
 import { useNavigate } from 'react-router-dom'
 import { Button } from '../ui/button'
 
-interface FormButtonProps {
+interface NavigateFormButtonProps {
     type: 'feedback' | 'report'
     text: string
 }
 
-export const FormButton = ({ type, text }: FormButtonProps) => {
+export const NavigateFormButton = ({ type, text }: NavigateFormButtonProps) => {
     const navigate = useNavigate()
 
     const handleClick = () => {
@@ -14,7 +14,7 @@ export const FormButton = ({ type, text }: FormButtonProps) => {
     }
 
     return (
-        <div className="fixed right-52 top-8" onClick={handleClick}>
+        <div className="fixed right-44 top-8" onClick={handleClick}>
             <Button>{text}</Button>
         </div>
     )
