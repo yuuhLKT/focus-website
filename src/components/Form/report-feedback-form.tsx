@@ -3,12 +3,12 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { Button } from '../ui/button'
+import { Card } from '../ui/card'
 import { Input } from '../ui/input'
 import { Label } from '../ui/label'
 import { Textarea } from '../ui/textarea'
 import { useToast } from '../ui/use-toast'
 import { formSchema } from './schemas'
-import { Card } from '../ui/card'
 
 interface SendFormProps {
     formType: 'feedback' | 'bug'
@@ -39,7 +39,7 @@ export const SendForm = ({ formType, onClose }: SendFormProps) => {
     }
 
     return (
-        <div className="mt-28 flex justify-center">
+        <div className="flex justify-center">
             <Card className="w-full max-w-2xl p-4">
                 <form onSubmit={form.handleSubmit(onSubmit)}>
                     <div className="mb-4">

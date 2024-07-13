@@ -1,5 +1,5 @@
-import { NavigateFormButton } from '@/components/Buttons'
 import { MessageCard } from '@/components/Cards/report-feedback-card'
+import { FeedbackDialogForm } from '@/components/Form'
 import { FeedbackHeader } from '@/components/Header'
 import { Toaster } from '@/components/ui/toaster'
 
@@ -7,7 +7,7 @@ export const FeedbackPage = () => {
     return (
         <>
             <FeedbackHeader />
-            <NavigateFormButton type="feedback" text="Send a feedback" />
+            <FeedbackDialogForm />
             <div className="mt-28">
                 <MessageCard
                     title="Teste 2 - Feedback"

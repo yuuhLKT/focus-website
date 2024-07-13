@@ -44,9 +44,7 @@ export function FormDialog({ text, formType }: FormDialogProps) {
                 </DialogHeader>
                 <SendForm
                     formType={formType}
-                    onClose={() => {
-                        setIsOpen(false)
-                    }}
+                    onClose={() => setIsOpen(false)}
                 />
             </DialogContent>
         </Dialog>

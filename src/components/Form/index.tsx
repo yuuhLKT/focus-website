@@ -1,25 +1,17 @@
-import { SendForm } from './report-feedback'
+import { FormDialog } from './form-dialog'
 
-export const FeedbackSendForm = () => {
+export const FeedbackDialogForm = () => {
     return (
         <>
-<<<<<<< Updated upstream
-            <SendForm formType="feedback" />
-=======
             <FormDialog text="Send a feedback" formType="feedback" />
->>>>>>> Stashed changes
         </>
     )
 }
 
-export const ReportSendForm = () => {
+export const ReportDialogForm = () => {
     return (
         <>
-<<<<<<< Updated upstream
-            <SendForm formType="bug" />
-=======
             <FormDialog text="Report a bug" formType="bug" />
->>>>>>> Stashed changes
         </>
     )
 }
