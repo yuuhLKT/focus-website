@@ -1,3 +1,4 @@
+import { ToastAction } from '@/components/ui/toast'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
@@ -5,14 +6,17 @@ import { Button } from '../ui/button'
 import { Input } from '../ui/input'
 import { Label } from '../ui/label'
 import { Textarea } from '../ui/textarea'
+import { useToast } from '../ui/use-toast'
 import { formSchema } from './schemas'
 import { Card } from '../ui/card'
 
 interface SendFormProps {
     formType: 'feedback' | 'bug'
+    onClose: () => void
 }
 
-export const SendForm = ({ formType }: SendFormProps) => {
+export const SendForm = ({ formType, onClose }: SendFormProps) => {
+    const { toast } = useToast()
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -23,14 +27,21 @@ export const SendForm = ({ formType }: SendFormProps) => {
         },
     })
 
-    function onSubmit(values: z.infer<typeof formSchema>) {
-        console.log(values)
+    function onSubmit(data: z.infer<typeof formSchema>) {
+        console.log(data)
+        toast({
+            variant: 'sucess',
+            title: 'Sent with success.',
+            description: 'Thanks a lot for the help.',
+            action: <ToastAction altText="View the post.">View</ToastAction>,
+        })
+        onClose()
     }
 
     return (
         <div className="mt-28 flex justify-center">
             <Card className="w-full max-w-2xl p-4">
-                <form onSubmit={form.handleSubmit(onSubmit)} className="">
+                <form onSubmit={form.handleSubmit(onSubmit)}>
                     <div className="mb-4">
                         <Label htmlFor="title">Title</Label>
                         <Input
@@ -41,7 +52,7 @@ export const SendForm = ({ formType }: SendFormProps) => {
                             className="mt-1 block w-full"
                         />
                         {form.formState.errors.title && (
-                            <span className="text-red-600 text-sm">
+                            <span className="text-red-600 text-sm mb-1">
                                 {form.formState.errors.title.message}
                             </span>
                         )}
@@ -55,7 +66,7 @@ export const SendForm = ({ formType }: SendFormProps) => {
                                 id="username"
                                 placeholder="Username"
                                 {...form.register('username')}
-                                className="mt-1 block w-full"
+                                className="mt-1 block w-full mb-1"
                             />
                             {form.formState.errors.username && (
                                 <span className="text-red-600 text-sm">
@@ -87,7 +98,7 @@ export const SendForm = ({ formType }: SendFormProps) => {
                             placeholder="Type your message here."
                             id="description"
                             {...form.register('description')}
-                            className="mt-1 block w-full resize-none"
+                            className="mt-1 block w-full resize-none mb-1 textAreaScroll"
                         />
                         {form.formState.errors.description && (
                             <span className="text-red-600 text-sm">

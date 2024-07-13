@@ -14,7 +14,7 @@ function App() {
                     <ModeToggle />
                 </div>
                 <Routes>
-                    <Route path="/" element={<HomePage />} />
+                    <Route path="*" element={<HomePage />} />
                     <Route path="/report" element={<ReportPage />} />
                     <Route path="/report/form" element={<ReportForm />} />
                     <Route path="/feedback" element={<FeedbackPage />} />

@@ -1,6 +1,7 @@
 import { NavigateFormButton } from '@/components/Buttons'
 import { MessageCard } from '@/components/Cards/report-feedback-card'
 import { ReportHeader } from '@/components/Header'
+import { Toaster } from '@/components/ui/toaster'
 
 export const ReportPage = () => {
     return (
@@ -29,7 +30,15 @@ export const ReportPage = () => {
                     date="13/02/20215"
                     status="solved"
                 />
+                <MessageCard
+                    title="Teste 3 - Report"
+                    author="Teste3"
+                    content="testetestetestetestetestetestetestetestetestetestetestetestetestetestetestetestetestetestetestetestetestetestetestetestetestetestetestetestetestetestetestetestetestetestetesteteste"
+                    date="13/02/20215"
+                    status="solved"
+                />
             </div>
+            <Toaster />
         </>
     )
 }

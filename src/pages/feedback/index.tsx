@@ -1,6 +1,7 @@
 import { NavigateFormButton } from '@/components/Buttons'
 import { MessageCard } from '@/components/Cards/report-feedback-card'
 import { FeedbackHeader } from '@/components/Header'
+import { Toaster } from '@/components/ui/toaster'
 
 export const FeedbackPage = () => {
     return (
@@ -16,6 +17,7 @@ export const FeedbackPage = () => {
                     status="feedback"
                 />
             </div>
+            <Toaster />
         </>
     )
 }
