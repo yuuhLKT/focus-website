@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom'
 import { StatusBadge } from '../Status'
 import { Button } from '../ui/button'
 import {
@@ -23,6 +24,12 @@ export const MessageCard = ({
     content,
     status,
 }: MessageCardProps) => {
+    const navigate = useNavigate()
+
+    const handleClick = () => {
+        navigate('/post')
+    }
+
     return (
         <div className="flex justify-center mb-3">
             <Card className="w-[850px] h-48">
@@ -39,7 +46,7 @@ export const MessageCard = ({
                 <CardContent className="-mt-2">
                     <div className="truncate">{content}</div>
                     <div className="flex justify-end mt-3">
-                        <Button>See more</Button>
+                        <Button onClick={handleClick}>See more</Button>
                     </div>
                 </CardContent>
             </Card>

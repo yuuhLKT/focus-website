@@ -4,6 +4,7 @@ import { ModeToggle } from './components/mode-toggle'
 import { FeedbackPage } from './pages/feedback'
 import { HomePage } from './pages/home'
 import { ReportPage } from './pages/report'
+import { ViewPost } from './pages/view-post'
 
 function App() {
     return (
@@ -16,6 +17,7 @@ function App() {
                     <Route path="/" element={<HomePage />} />
                     <Route path="/report" element={<ReportPage />} />
                     <Route path="/feedback" element={<FeedbackPage />} />
+                    <Route path="/post" element={<ViewPost />} />
                 </Routes>
             </div>
         </ThemeProvider>
