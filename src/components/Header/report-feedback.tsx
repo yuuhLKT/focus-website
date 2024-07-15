@@ -9,6 +9,10 @@ export const HeaderReportFeedback = () => {
         navigate(-1)
     }
 
+    const goHome = () => {
+        navigate('/')
+    }
+
     return (
         <>
             <div className="fixed top-8 left-12">
@@ -20,7 +24,7 @@ export const HeaderReportFeedback = () => {
                             size={32}
                         />
                     </div>
-                    <div className="flex gap-2">
+                    <div className="flex gap-2 cursor-pointer" onClick={goHome}>
                         <img
                             src={FocusIcon}
                             alt="Focus Mode extension icon."

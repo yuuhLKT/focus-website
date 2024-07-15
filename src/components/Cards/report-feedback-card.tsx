@@ -10,14 +10,16 @@ import {
 } from '../ui/card'
 
 interface MessageCardProps {
+    id: string
     title: string
     author: string
     date: string
     content: string
-    status: 'open' | 'working' | 'solved' | 'feedback'
+    status: 'OPEN' | 'WORKING' | 'SOLVED' | 'FEEDBACK'
 }
 
 export const MessageCard = ({
+    id,
     title,
     author,
     date,
@@ -27,7 +29,7 @@ export const MessageCard = ({
     const navigate = useNavigate()
 
     const handleClick = () => {
-        navigate('/post')
+        navigate(`/post/${id}`)
     }
 
     return (

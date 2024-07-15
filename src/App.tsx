@@ -14,10 +14,10 @@ function App() {
                     <ModeToggle />
                 </div>
                 <Routes>
-                    <Route path="*" element={<HomePage />} />
                     <Route path="/report" element={<ReportPage />} />
                     <Route path="/feedback" element={<FeedbackPage />} />
-                    <Route path="/post" element={<ViewPost />} />
+                    <Route path="/post/:id" element={<ViewPost />} />
+                    <Route path="*" element={<HomePage />} />
                 </Routes>
             </div>
         </ThemeProvider>

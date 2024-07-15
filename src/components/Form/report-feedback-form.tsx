@@ -12,10 +12,10 @@ import { formSchema } from './schemas'
 
 interface SendFormProps {
     formType: 'feedback' | 'bug'
-    onClose: () => void
+    handleClose: () => void
 }
 
-export const SendForm = ({ formType, onClose }: SendFormProps) => {
+export const SendForm = ({ formType, handleClose }: SendFormProps) => {
     const { toast } = useToast()
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -33,9 +33,18 @@ export const SendForm = ({ formType, onClose }: SendFormProps) => {
             variant: 'sucess',
             title: 'Sent with success.',
             description: 'Thanks a lot for the help.',
-            action: <ToastAction altText="View the post.">View</ToastAction>,
+            action: (
+                <ToastAction
+                    altText="View the post."
+                    onClick={() => {
+                        console.log('going to the post')
+                    }}
+                >
+                    View
+                </ToastAction>
+            ),
         })
-        onClose()
+        handleClose()
     }
 
     return (

@@ -11,3 +11,7 @@ export const FeedbackHeader = () => {
 export const ViewPostHeader = () => {
     return <HeaderReportFeedback />
 }
+
+export const ErrorHeader = () => {
+    return <HeaderReportFeedback />
+}
