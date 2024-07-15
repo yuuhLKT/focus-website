@@ -7,3 +7,7 @@ export const ReportHeader = () => {
 export const FeedbackHeader = () => {
     return <HeaderReportFeedback />
 }
+
+export const ViewPostHeader = () => {
+    return <HeaderReportFeedback />
+}
