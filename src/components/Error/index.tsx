@@ -1,11 +1,14 @@
-import { ErrorFetch } from './error-fetch'
+import { BasicError } from '../Cards/basic-error'
 import { NoReportOrFeedbacks } from './no-reports-feedbacks'
-import { PostDontExist } from './post-dont-exist'
 
 export const ErrorFetchData = () => {
-    return <ErrorFetch />
+    return (
+        <BasicError
+            title="Sometingh went wrong."
+            description="Please try again later. We are working on it."
+        />
+    )
 }
-
 export const ErrorNotFoundFeedback = () => {
     return <NoReportOrFeedbacks type="feedbacks" />
 }
@@ -15,5 +18,10 @@ export const ErrorNotFoundReport = () => {
 }
 
 export const ErrorNotFoundPost = () => {
-    return <PostDontExist />
+    return (
+        <BasicError
+            title="Post not found."
+            description="This post probably no longer exists."
+        />
+    )
 }
