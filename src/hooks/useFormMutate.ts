@@ -1,11 +1,10 @@
 import { formSchema } from '@/components/Form/schemas'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import axios from 'axios'
-import 'dotenv/config'
 
 const headers = {
     'Content-Type': 'application/json',
-    'authorization': process.env.HEADER_AUTORIZATION
+    'authorization': import.meta.env.VITE_HEADER_AUTHORIZATION
 }
 
 const postFormData = async (data: formSchema) => {
