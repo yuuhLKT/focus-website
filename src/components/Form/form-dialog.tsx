@@ -12,10 +12,10 @@ import { SendForm } from './report-feedback-form'
 
 interface FormDialogProps {
     text: string
-    formType: 'feedback' | 'bug'
+    type: 'feedback' | 'bug'
 }
 
-export function FormDialog({ text, formType }: FormDialogProps) {
+export function FormDialog({ text, type }: FormDialogProps) {
     const [isOpen, setIsOpen] = useState(false)
 
     const titles = {
@@ -37,15 +37,10 @@ export function FormDialog({ text, formType }: FormDialogProps) {
             </DialogTrigger>
             <DialogContent className="w-full max-w-xl">
                 <DialogHeader>
-                    <DialogTitle>{titles[formType]}</DialogTitle>
-                    <DialogDescription>
-                        {descriptions[formType]}
-                    </DialogDescription>
+                    <DialogTitle>{titles[type]}</DialogTitle>
+                    <DialogDescription>{descriptions[type]}</DialogDescription>
                 </DialogHeader>
-                <SendForm
-                    formType={formType}
-                    handleClose={() => setIsOpen(false)}
-                />
+                <SendForm type={type} handleClose={() => setIsOpen(false)} />
             </DialogContent>
         </Dialog>
     )

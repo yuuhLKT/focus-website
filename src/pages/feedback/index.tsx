@@ -4,7 +4,7 @@ import { FeedbackDialogForm } from '@/components/Form'
 import { FeedbackHeader } from '@/components/Header'
 import { LoadingSpinner } from '@/components/Loading'
 import { Toaster } from '@/components/ui/toaster'
-import { useFeedbackData } from '@/hooks/useFeedbackdata'
+import { useFeedbackData } from '@/hooks/useFeedbackData'
 import { FeedbackResponse } from '@/interfaces'
 import dayjs from 'dayjs'
 

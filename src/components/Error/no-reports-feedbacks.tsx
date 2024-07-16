@@ -25,7 +25,7 @@ export const NoReportOrFeedbacks = ({ type }: NoReportOrFeedbacksProps) => {
                         </CardTitle>
                         <CardDescription>
                             There are no {type} available at the moment.
-                            Consider sending 1 and be the first.
+                            Consider sending one and be the first.
                         </CardDescription>
                     </CardHeader>
                 </Card>

@@ -1,6 +1,8 @@
 import { ToastAction } from '@/components/ui/toast'
+import { useFormMutate } from '@/hooks/useFeedbackMutate'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
 import { z } from 'zod'
 import { Button } from '../ui/button'
 import { Card } from '../ui/card'
@@ -11,38 +13,55 @@ import { useToast } from '../ui/use-toast'
 import { formSchema } from './schemas'
 
 interface SendFormProps {
-    formType: 'feedback' | 'bug'
+    type: 'feedback' | 'bug'
     handleClose: () => void
 }
 
-export const SendForm = ({ formType, handleClose }: SendFormProps) => {
+export const SendForm = ({ type, handleClose }: SendFormProps) => {
+    const navigate = useNavigate()
     const { toast } = useToast()
+    const { mutate } = useFormMutate()
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
             title: '',
-            description: '',
-            username: '',
-            formType,
+            content: '',
+            authorName: '',
+            type,
         },
     })
 
     function onSubmit(data: z.infer<typeof formSchema>) {
-        console.log(data)
-        toast({
-            variant: 'sucess',
-            title: 'Sent with success.',
-            description: 'Thanks a lot for the help.',
-            action: (
-                <ToastAction
-                    altText="View the post."
-                    onClick={() => {
-                        console.log('going to the post')
-                    }}
-                >
-                    View
-                </ToastAction>
-            ),
+        mutate(data, {
+            onSuccess: (response) => {
+                toast({
+                    variant: 'success',
+                    title: 'Sent with success.',
+                    description: 'Thanks a lot for the help.',
+                    action: (
+                        <ToastAction
+                            altText="View the post."
+                            onClick={() => {
+                                navigate(`/post/${response.id}`)
+                            }}
+                        >
+                            View
+                        </ToastAction>
+                    ),
+                })
+            },
+            onError: () => {
+                toast({
+                    variant: 'error',
+                    title: 'Ops, something went wrong.',
+                    description: 'Please try again later. CODE: ',
+                    action: (
+                        <ToastAction altText="Close the toast.">
+                            Close
+                        </ToastAction>
+                    ),
+                })
+            },
         })
         handleClose()
     }
@@ -74,12 +93,12 @@ export const SendForm = ({ formType, handleClose }: SendFormProps) => {
                                 type="text"
                                 id="username"
                                 placeholder="Username"
-                                {...form.register('username')}
+                                {...form.register('authorName')}
                                 className="mt-1 block w-full mb-1"
                             />
-                            {form.formState.errors.username && (
+                            {form.formState.errors.authorName && (
                                 <span className="text-red-600 text-sm">
-                                    {form.formState.errors.username.message}
+                                    {form.formState.errors.authorName.message}
                                 </span>
                             )}
                         </div>
@@ -89,13 +108,13 @@ export const SendForm = ({ formType, handleClose }: SendFormProps) => {
                             <Input
                                 type="text"
                                 id="formType"
-                                value={formType.toUpperCase()}
+                                value={type.toUpperCase()}
                                 disabled
                                 className="mt-1 block w-full text-center"
                             />
-                            {form.formState.errors.formType && (
+                            {form.formState.errors.type && (
                                 <span className="text-red-600 text-sm">
-                                    {form.formState.errors.formType.message}
+                                    {form.formState.errors.type.message}
                                 </span>
                             )}
                         </div>
@@ -106,12 +125,12 @@ export const SendForm = ({ formType, handleClose }: SendFormProps) => {
                         <Textarea
                             placeholder="Type your message here."
                             id="description"
-                            {...form.register('description')}
+                            {...form.register('content')}
                             className="mt-1 block w-full resize-none mb-1 textAreaScroll"
                         />
-                        {form.formState.errors.description && (
+                        {form.formState.errors.content && (
                             <span className="text-red-600 text-sm">
-                                {form.formState.errors.description.message}
+                                {form.formState.errors.content.message}
                             </span>
                         )}
                     </div>
