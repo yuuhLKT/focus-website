@@ -4,11 +4,15 @@ import axios from 'axios'
 
 const headers = {
     'Content-Type': 'application/json',
-    'authorization': import.meta.env.VITE_HEADER_AUTHORIZATION
+    authorization: import.meta.env.VITE_HEADER_AUTHORIZATION,
 }
 
 const postFormData = async (data: formSchema) => {
-    const response = await axios.post('http://localhost:3001/report-feedback', data, { headers })
+    const response = await axios.post(
+        'http://localhost:3001/report-feedback',
+        data,
+        { headers }
+    )
     return response.data
 }
 

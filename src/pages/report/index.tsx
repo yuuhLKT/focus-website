@@ -1,6 +1,5 @@
 import { MessageCard } from '@/components/Cards/report-feedback-card'
 import { ErrorFetchData, ErrorNotFoundReport } from '@/components/Error/'
-import { ReportDialogForm } from '@/components/Form'
 import { ReportHeader } from '@/components/Header'
 import { LoadingSpinner } from '@/components/Loading'
 import { StatusSelect } from '@/components/Select'
@@ -40,11 +39,10 @@ export const ReportPage = () => {
     return (
         <>
             <ReportHeader />
-            <ReportDialogForm />
-            <div className="fixed top-24 left-16">
+            <div className="flex items-center justify-center lg:fixed lg:top-24 lg:left-12">
                 <StatusSelect onStatusChange={setSelectedStatus} />
             </div>
-            <div className="mt-28">
+            <div className="mt-16">
                 {filteredData.map((report: ReportResponse) => (
                     <MessageCard
                         key={report.id}

@@ -22,21 +22,21 @@ export const ViewPost = () => {
 
     return (
         <>
-            <ViewPostHeader />
-            {data.type === 'FEEDBACK' ? (
-                <FeedbackDialogForm />
-            ) : (
-                <ReportDialogForm />
-            )}
-            <div className="flex justify-center mb-3">
-                <ViewPostContent
-                    title={data.title}
-                    authorName={data.authorName}
-                    content={data.content}
-                    date={dayjs(data.createdAt).format('DD/MM/YYYY - HH:mm')}
-                    status={data.status}
-                />
+            <div className="mx-2">
+                <ViewPostHeader />
+                {data.type === 'FEEDBACK' ? (
+                    <FeedbackDialogForm />
+                ) : (
+                    <ReportDialogForm />
+                )}
             </div>
+            <ViewPostContent
+                title={data.title}
+                authorName={data.authorName}
+                content={data.content}
+                date={dayjs(data.createdAt).format('DD/MM/YYYY - HH:mm')}
+                status={data.status}
+            />
         </>
     )
 }

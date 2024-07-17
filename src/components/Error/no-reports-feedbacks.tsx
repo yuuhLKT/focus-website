@@ -10,13 +10,15 @@ interface NoReportOrFeedbacksProps {
 export const NoReportOrFeedbacks = ({ type }: NoReportOrFeedbacksProps) => {
     return (
         <>
-            <ErrorHeader />
-            {type === 'feedbacks' ? (
-                <FeedbackDialogForm />
-            ) : (
-                <ReportDialogForm />
-            )}
-            <div className="flex justify-center items-center h-screen">
+            <div className="mx-2">
+                <ErrorHeader />
+                {type === 'feedbacks' ? (
+                    <FeedbackDialogForm />
+                ) : (
+                    <ReportDialogForm />
+                )}
+            </div>
+            <div className="flex justify-center items-center mt-48">
                 <Card className="w-[350px] h-auto shadow-lg text-center">
                     <CardHeader>
                         <CardTitle>

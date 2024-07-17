@@ -1,6 +1,5 @@
 import { MessageCard } from '@/components/Cards/report-feedback-card'
 import { ErrorFetchData, ErrorNotFoundFeedback } from '@/components/Error/'
-import { FeedbackDialogForm } from '@/components/Form'
 import { FeedbackHeader } from '@/components/Header'
 import { LoadingSpinner } from '@/components/Loading'
 import { Toaster } from '@/components/ui/toaster'
@@ -30,8 +29,7 @@ export const FeedbackPage = () => {
     return (
         <>
             <FeedbackHeader />
-            <FeedbackDialogForm />
-            <div className="mt-28">
+            <div className="md:mt-16 mt-12">
                 {sortedData.map((feedback: FeedbackResponse) => (
                     <MessageCard
                         key={feedback.id}

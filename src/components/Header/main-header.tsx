@@ -2,7 +2,7 @@ import { Undo2 } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import FocusIcon from '../../assets/focus.svg'
 
-export const HeaderReportFeedback = () => {
+export const MainHeader = () => {
     const navigate = useNavigate()
 
     const goBack = () => {
@@ -15,8 +15,8 @@ export const HeaderReportFeedback = () => {
 
     return (
         <>
-            <div className="fixed top-8 left-12">
-                <div className="flex gap-8">
+            <div className="flex mt-8 md:ml-12">
+                <div className="flex md:gap-8 gap-4">
                     <div className="flex flex-col items-start">
                         <Undo2
                             className="cursor-pointer mb-10"

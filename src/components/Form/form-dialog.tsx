@@ -30,11 +30,11 @@ export function FormDialog({ text, type }: FormDialogProps) {
 
     return (
         <Dialog open={isOpen} onOpenChange={setIsOpen}>
-            <DialogTrigger asChild>
-                <div className="fixed right-44 top-8">
+            <div className="flex justify-end -mt-[75px] mb-4 md:mr-44 md:-mt-[70px]">
+                <DialogTrigger asChild>
                     <Button onClick={() => setIsOpen(true)}>{text}</Button>
-                </div>
-            </DialogTrigger>
+                </DialogTrigger>
+            </div>
             <DialogContent className="w-full max-w-xl">
                 <DialogHeader>
                     <DialogTitle>{titles[type]}</DialogTitle>
