@@ -4,7 +4,7 @@ import axios from 'axios'
 
 const headers = {
     'Content-Type': 'application/json',
-    authorization: import.meta.env.VITE_HEADER_AUTHORIZATION,
+    Authorization: import.meta.env.VITE_HEADER_AUTHORIZATION,
 }
 
 const postFormData = async (data: formSchema) => {
