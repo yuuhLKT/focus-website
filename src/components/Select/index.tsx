@@ -7,43 +7,44 @@ import {
     SelectTrigger,
     SelectValue,
 } from '@/components/ui/select'
+import { ControllerRenderProps } from 'react-hook-form'
 import { StatusBadge } from '../Status'
-import { Label } from '../ui/label'
 
-interface StatusSelectProps {
-    onStatusChange: (status: string | null) => void
+interface StatusSelectProps extends ControllerRenderProps {
+    //
 }
 
-export function StatusSelect({ onStatusChange }: StatusSelectProps) {
+export function StatusSelect({ onChange, value }: StatusSelectProps) {
     return (
-        <div className="w-[250px]">
-            <Select
-                onValueChange={(value: string) =>
-                    onStatusChange(value === 'all' ? null : value)
-                }
-            >
-                <Label>Filter by status:</Label>
-                <SelectTrigger className="w-full mt-1">
-                    <SelectValue placeholder="Choose a status" />
-                </SelectTrigger>
-                <SelectContent className="text-center">
-                    <SelectGroup>
-                        <SelectLabel>Status</SelectLabel>
-                        <SelectItem value="open">
-                            <StatusBadge status="OPEN" />
-                        </SelectItem>
-                        <SelectItem value="working">
-                            <StatusBadge status="WORKING" />
-                        </SelectItem>
-                        <SelectItem value="solved">
-                            <StatusBadge status="SOLVED" />
-                        </SelectItem>
-                        <SelectItem value="all" className="flex justify-center">
-                            ALL
-                        </SelectItem>
-                    </SelectGroup>
-                </SelectContent>
-            </Select>
-        </div>
+        <Select onValueChange={onChange} value={value}>
+            <SelectTrigger className="w-full mt-1">
+                <SelectValue>
+                    {value ? (
+                        value === 'ALL' ? (
+                            'All'
+                        ) : (
+                            <StatusBadge status={value} />
+                        )
+                    ) : (
+                        'Choose a status'
+                    )}
+                </SelectValue>
+            </SelectTrigger>
+            <SelectContent className="text-center">
+                <SelectGroup>
+                    <SelectLabel>Status</SelectLabel>
+                    <SelectItem value="OPEN">
+                        <StatusBadge status="OPEN" />
+                    </SelectItem>
+                    <SelectItem value="WORKING">
+                        <StatusBadge status="WORKING" />
+                    </SelectItem>
+                    <SelectItem value="SOLVED">
+                        <StatusBadge status="SOLVED" />
+                    </SelectItem>
+                    <SelectItem value="ALL">All</SelectItem>
+                </SelectGroup>
+            </SelectContent>
+        </Select>
     )
 }

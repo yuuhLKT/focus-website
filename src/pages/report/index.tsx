@@ -1,8 +1,8 @@
 import { MessageCard } from '@/components/Cards/report-feedback-card'
 import { ErrorFetchData, ErrorNotFoundReport } from '@/components/Error/'
+import { StatusFilter } from '@/components/Filter'
 import { ReportHeader } from '@/components/Header'
 import { LoadingSpinner } from '@/components/Loading'
-import { StatusSelect } from '@/components/Select'
 import { Toaster } from '@/components/ui/toaster'
 import { useReportData } from '@/hooks/useReportData'
 import { ReportResponse } from '@/interfaces'
@@ -11,7 +11,7 @@ import { useState } from 'react'
 
 export const ReportPage = () => {
     const { data, isLoading, error } = useReportData()
-    const [selectedStatus, setSelectedStatus] = useState<string | null>(null)
+    const [statusFilter, setStatusFilter] = useState<string | null>(null)
 
     if (isLoading) {
         return <LoadingSpinner />
@@ -25,25 +25,41 @@ export const ReportPage = () => {
         return <ErrorNotFoundReport />
     }
 
-    const sortedData = data.sort((a: ReportResponse, b: ReportResponse) => {
-        return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-    })
+    const handleFilterApply = (status: string | null) => {
+        setStatusFilter(status)
+    }
 
-    const filteredData = selectedStatus
-        ? sortedData.filter(
-              (report: ReportResponse) =>
-                  report.status.toLowerCase() === selectedStatus
-          )
-        : sortedData
+    const handleFilterClear = () => {
+        setStatusFilter(null)
+    }
+
+    const filteredData =
+        statusFilter && statusFilter !== 'ALL'
+            ? data.filter(
+                  (report: ReportResponse) => report.status === statusFilter
+              )
+            : data
+
+    const sortedData = filteredData.sort(
+        (a: ReportResponse, b: ReportResponse) => {
+            return (
+                new Date(b.createdAt).getTime() -
+                new Date(a.createdAt).getTime()
+            )
+        }
+    )
 
     return (
         <>
             <ReportHeader />
-            <div className="flex items-center justify-center lg:fixed lg:top-24 lg:left-12">
-                <StatusSelect onStatusChange={setSelectedStatus} />
+            <div className="flex ml-8 lg:fixed lg:top-24 lg:left-12">
+                <StatusFilter
+                    onFilterApply={handleFilterApply}
+                    onFilterClear={handleFilterClear}
+                />
             </div>
             <div className="mt-16">
-                {filteredData.map((report: ReportResponse) => (
+                {sortedData.map((report: ReportResponse) => (
                     <MessageCard
                         key={report.id}
                         id={report.id}
