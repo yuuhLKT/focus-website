@@ -3,13 +3,16 @@ import { ErrorFetchData, ErrorNotFoundReport } from '@/components/Error/'
 import { ReportDialogForm } from '@/components/Form'
 import { ReportHeader } from '@/components/Header'
 import { LoadingSpinner } from '@/components/Loading'
+import { StatusSelect } from '@/components/Select'
 import { Toaster } from '@/components/ui/toaster'
 import { useReportData } from '@/hooks/useReportData'
 import { ReportResponse } from '@/interfaces'
 import dayjs from 'dayjs'
+import { useState } from 'react'
 
 export const ReportPage = () => {
     const { data, isLoading, error } = useReportData()
+    const [selectedStatus, setSelectedStatus] = useState<string | null>(null)
 
     if (isLoading) {
         return <LoadingSpinner />
@@ -27,13 +30,24 @@ export const ReportPage = () => {
         return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
     })
 
+    const filteredData = selectedStatus
+        ? sortedData.filter(
+              (report: ReportResponse) =>
+                  report.status.toLowerCase() === selectedStatus
+          )
+        : sortedData
+
     return (
         <>
             <ReportHeader />
             <ReportDialogForm />
+            <div className="fixed top-24 left-16">
+                <StatusSelect onStatusChange={setSelectedStatus} />
+            </div>
             <div className="mt-28">
-                {sortedData.map((report: ReportResponse) => (
+                {filteredData.map((report: ReportResponse) => (
                     <MessageCard
+                        key={report.id}
                         id={report.id}
                         title={report.title}
                         author={report.authorName}
