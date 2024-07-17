@@ -9,8 +9,10 @@ interface ErrorProps {
 export const BasicError = ({ title, description }: ErrorProps) => {
     return (
         <>
-            <ErrorHeader />
-            <div className="flex justify-center items-center h-screen">
+            <div className="mx-2">
+                <ErrorHeader />
+            </div>
+            <div className="flex justify-center items-center mt-48">
                 <Card className="w-[350px] h-auto shadow-lg text-center">
                     <CardHeader>
                         <CardTitle>{title}</CardTitle>
