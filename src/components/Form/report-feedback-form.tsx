@@ -1,5 +1,12 @@
 import { ToastAction } from '@/components/ui/toast'
 import { useFormMutate } from '@/hooks/useFormMutate'
+import { useOpenReportsStatus } from '@/hooks/usePostStatusData'
+import {
+    getCookie,
+    getCookieCount,
+    setCookie,
+    setCookieCount,
+} from '@/utils/cookieUtils'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
@@ -31,9 +38,46 @@ export const SendForm = ({ type, handleClose }: SendFormProps) => {
         },
     })
 
+    const reportIds = getCookie('open-reports') || []
+    const { data: openReports = [] } = useOpenReportsStatus(reportIds)
+
+    const feedbackCount = getCookieCount('feedback-submissions')
+    const maxOpenReports = 3
+    const maxFeedbacksPerMonth = 3
+
     function onSubmit(data: z.infer<typeof formSchema>) {
+        if (type === 'bug' && openReports.length >= maxOpenReports) {
+            toast({
+                variant: 'error',
+                title: 'Submission limit reached.',
+                description: `You can only have ${maxOpenReports} open bug reports.`,
+                action: <ToastAction altText="Close">Close</ToastAction>,
+            })
+            return
+        }
+
+        if (type === 'feedback' && feedbackCount >= maxFeedbacksPerMonth) {
+            toast({
+                variant: 'error',
+                title: 'Submission limit reached.',
+                description: `You can only submit ${maxFeedbacksPerMonth} feedbacks per month.`,
+                action: <ToastAction altText="Close">Close</ToastAction>,
+            })
+            return
+        }
+
         mutate(data, {
             onSuccess: (response) => {
+                if (type === 'bug') {
+                    const updatedOpenReports = [...openReports, response.id]
+                    setCookie('open-reports', updatedOpenReports, 30)
+                }
+
+                if (type === 'feedback') {
+                    const newFeedbackCount = feedbackCount + 1
+                    setCookieCount('feedback-submissions', newFeedbackCount, 30)
+                }
+
                 toast({
                     variant: 'success',
                     title: 'Sent with success.',
@@ -56,11 +100,7 @@ export const SendForm = ({ type, handleClose }: SendFormProps) => {
                     variant: 'error',
                     title: 'Ops, something went wrong.',
                     description: 'Please try again later.',
-                    action: (
-                        <ToastAction altText="Close the toast.">
-                            Close
-                        </ToastAction>
-                    ),
+                    action: <ToastAction altText="Close">Close</ToastAction>,
                 })
                 handleClose()
             },
