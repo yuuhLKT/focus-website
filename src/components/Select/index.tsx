@@ -7,11 +7,17 @@ import {
     SelectTrigger,
     SelectValue,
 } from '@/components/ui/select'
-import { ControllerRenderProps } from 'react-hook-form'
+import { FieldPath, FieldPathValue, FieldValues } from 'react-hook-form'
 import { StatusBadge } from '../Status'
 
-interface StatusSelectProps extends ControllerRenderProps {
-    //
+export interface StatusSelectProps<
+    TFieldValues extends FieldValues = FieldValues,
+    TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
+> {
+    name: TName
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    onChange: (...event: any[]) => void
+    value: FieldPathValue<TFieldValues, TName>
 }
 
 export function StatusSelect({ onChange, value }: StatusSelectProps) {
