@@ -40,7 +40,7 @@ export const MessageCard = ({
                         <CardTitle className="mb-1">{title}</CardTitle>
                         <CardDescription className="flex items-center justify-between md:ml-4">
                             <span>{author}</span>
-                            <div className="flex flex-col items-end space-y-1">
+                            <div className="flex flex-col items-end">
                                 <StatusBadge status={status} />
                                 <span>{date}</span>
                             </div>
