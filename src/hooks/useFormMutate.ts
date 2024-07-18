@@ -7,9 +7,11 @@ const headers = {
     Authorization: import.meta.env.VITE_HEADER_AUTHORIZATION,
 }
 
+const apiUrl = import.meta.env.VITE_API_URL
+
 const postFormData = async (data: formSchema) => {
     const response = await axios.post(
-        'http://localhost:3001/report-feedback',
+        `${apiUrl}/report-feedback/`,
         data,
         { headers }
     )
@@ -24,6 +26,7 @@ export function useFormMutate() {
             queryClient.invalidateQueries({ queryKey: ['reportData'] })
             queryClient.invalidateQueries({ queryKey: ['feedbackData'] })
         },
+        retry: false
     })
 
     return mutate
