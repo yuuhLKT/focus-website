@@ -49,21 +49,22 @@ export const SendForm = ({ type, handleClose }: SendFormProps) => {
                         </ToastAction>
                     ),
                 })
+                handleClose()
             },
             onError: () => {
                 toast({
                     variant: 'error',
                     title: 'Ops, something went wrong.',
-                    description: 'Please try again later. CODE: ',
+                    description: 'Please try again later.',
                     action: (
                         <ToastAction altText="Close the toast.">
                             Close
                         </ToastAction>
                     ),
                 })
+                handleClose()
             },
         })
-        handleClose()
     }
 
     return (
