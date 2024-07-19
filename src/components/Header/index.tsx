@@ -17,7 +17,7 @@ export const ReportHeader = () => {
                 <MainHeader />
                 <ReportDialogForm />
             </div>
-            <div className="flex justify-end mr-12 md:mr-24 md:-mt-14">
+            <div className="flex justify-end mr-10 md:mr-24 md:-mt-14">
                 <ModeToggle />
             </div>
         </>
@@ -31,7 +31,7 @@ export const FeedbackHeader = () => {
                 <MainHeader />
                 <FeedbackDialogForm />
             </div>
-            <div className="flex justify-end mr-12 md:mr-24 md:-mt-14">
+            <div className="flex justify-end mr-10 md:mr-24 md:-mt-14">
                 <ModeToggle />
             </div>
         </>
@@ -42,7 +42,7 @@ export const ViewPostHeader = () => {
     return (
         <>
             <MainHeader />
-            <div className="fixed md:top-8 md:right-16 bottom-12 right-12">
+            <div className="fixed bottom-20 right-6 md:top-8 md:right-16 ">
                 <ModeToggle />
             </div>
         </>
@@ -53,7 +53,7 @@ export const ErrorHeader = () => {
     return (
         <>
             <MainHeader />
-            <div className="fixed md:top-8 md:right-16 bottom-12 right-12">
+            <div className="fixed bottom-20 right-6 md:top-8 md:right-16">
                 <ModeToggle />
             </div>
         </>
