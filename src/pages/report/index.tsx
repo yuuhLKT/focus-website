@@ -3,6 +3,7 @@ import { ErrorFetchData, ErrorNotFoundReport } from '@/components/Error/'
 import { StatusFilter } from '@/components/Filter'
 import { ReportHeader } from '@/components/Header'
 import { LoadingSpinner } from '@/components/Loading'
+import { CustomPagination } from '@/components/Pagination'
 import { Toaster } from '@/components/ui/toaster'
 import { useReportData } from '@/hooks/useReportData'
 import { ReportResponse } from '@/interfaces'
@@ -12,6 +13,8 @@ import { useState } from 'react'
 export const ReportPage = () => {
     const { data, isLoading, error } = useReportData()
     const [statusFilter, setStatusFilter] = useState<string | null>(null)
+    const [currentPage, setCurrentPage] = useState(1)
+    const itemsPerPage = 5
 
     if (isLoading) {
         return <LoadingSpinner />
@@ -49,6 +52,12 @@ export const ReportPage = () => {
         }
     )
 
+    const startIndex = (currentPage - 1) * itemsPerPage
+    const currentPageData = sortedData.slice(
+        startIndex,
+        startIndex + itemsPerPage
+    )
+
     return (
         <>
             <ReportHeader />
@@ -59,7 +68,7 @@ export const ReportPage = () => {
                 />
             </div>
             <div className="mt-16">
-                {sortedData.map((report: ReportResponse) => (
+                {currentPageData.map((report: ReportResponse) => (
                     <MessageCard
                         key={report.id}
                         id={report.id}
@@ -73,6 +82,12 @@ export const ReportPage = () => {
                     />
                 ))}
             </div>
+            <CustomPagination
+                totalItems={sortedData.length}
+                itemsPerPage={itemsPerPage}
+                currentPage={currentPage}
+                onPageChange={setCurrentPage}
+            />
             <Toaster />
         </>
     )
