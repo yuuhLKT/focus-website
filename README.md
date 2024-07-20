@@ -1,6 +1,6 @@
 <h1 align="center" id="title"><img src="./src/assets/focus.svg" alt="project-image" width="70" height="70"></p>Focus Website</h1>
 
-A website made using React TypeScript Tailwind and shadcn/ui. The site serves to collect bug reports and user feedback regarding the [Focus Mode extension](https://github.com/yuuhLKT/Focus-Extension).
+A website made using React, TypeScript, Tailwind and shadcn/ui. The site serves to collect bug reports and user feedback regarding the [Focus Mode extension](https://github.com/yuuhLKT/Focus-Extension).
 
 [Click here](https://focus-website-rust.vercel.app/) and go to the working website.
 
