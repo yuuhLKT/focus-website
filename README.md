@@ -2,6 +2,8 @@
 
 <p id="description">A website made using React TypeScript Tailwind and shadcn/ui. The site serves to collect bug reports and user feedback regarding the [Focus Mode extension](https://github.com/yuuhLKT/Focus-Extension).</p>
 
+<p id="description">[Click here](https://focus-website-rust.vercel.app/) and go to the working website.</p>
+
 <h2>Project Screenshots:</h2>
 
 <img src="./project-screenshots/Screenshot 1.png" alt="project-screenshot" width="1400" height="560">
