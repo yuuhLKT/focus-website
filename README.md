@@ -4,16 +4,6 @@ A website made using React, TypeScript, Tailwind and shadcn/ui. The site serves 
 
 [Click here](https://focus-website-rust.vercel.app/) and go to the working website.
 
-<h2>Project Screenshots:</h2>
-
-<img src="./project-screenshots/Screenshot 1.png" alt="project-screenshot" width="1400" height="560">
-
-<img src="./project-screenshots/Screenshot 2.png" alt="project-screenshot" width="1400" height="560">
-
-<img src="./project-screenshots/Screenshot 3.png" alt="project-screenshot" width="1400" height="560">
-
-<img src="./project-screenshots/Screenshot 4.png" alt="project-screenshot" width="1400" height="560">
-
 <h2>🛠️ Installation Steps:</h2>
 
 <p>1. Clone Repository</p>
