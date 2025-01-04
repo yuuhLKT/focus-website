@@ -1,11 +1,13 @@
 import { Github, HandCoins, Linkedin } from 'lucide-react'
 
 export const CopyrightFooter = () => {
+    const currentYear = new Date().getFullYear();
+    
     return (
         <footer className="dark:text-white py-2 mt-8 w-full text-black">
             <div className="container mx-auto flex flex-col items-center justify-center">
                 <p className="text-sm mb-2">
-                    © 2024 Focus Extension | Yuri Luiz
+                    © {currentYear} Focus Extension | Yuri Luiz
                 </p>
                 <div className="flex space-x-4 text-xs ">
                     <a
